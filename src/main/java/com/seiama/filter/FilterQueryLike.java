@@ -23,18 +23,20 @@
  */
 package com.seiama.filter;
 
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A filter query.
+ * Something that can be represented as a {@link FilterQuery}.
  *
  * @since 1.0.0
  */
-public interface FilterQuery extends FilterQueryLike {
-  @ApiStatus.NonExtendable
-  @Override
-  default @NotNull FilterQuery asFilterQuery() {
-    return this;
-  }
+@FunctionalInterface
+public interface FilterQueryLike {
+  /**
+   * Provides a filter query.
+   *
+   * @return the filter query
+   * @since 1.0.0
+   */
+  @NotNull FilterQuery asFilterQuery();
 }

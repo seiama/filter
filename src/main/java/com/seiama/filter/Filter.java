@@ -24,6 +24,7 @@
 package com.seiama.filter;
 
 import java.util.List;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -177,13 +178,26 @@ public interface Filter {
   @NotNull FilterResponse query(final @NotNull FilterQuery query);
 
   /**
+   * Query this filter for a response.
+   *
+   * @param query the query
+   * @return the response
+   * @since 1.0.0
+   */
+  @ApiStatus.NonExtendable
+  default @NotNull FilterResponse query(final @NotNull FilterQueryLike query) {
+    return this.query(query.asFilterQuery());
+  }
+
+  /**
    * Query this filter and return {@code true} if the response is {@link FilterResponse#ALLOW}, and {@code false} otherwise.
    *
    * @param query the query
    * @return {@code true} if allowed, {@code false} otherwise
    * @since 1.0.0
    */
-  default boolean allows(final @NotNull FilterQuery query) {
+  @ApiStatus.NonExtendable
+  default boolean allows(final @NotNull FilterQueryLike query) {
     return this.query(query) == FilterResponse.ALLOW;
   }
 
@@ -194,7 +208,8 @@ public interface Filter {
    * @return {@code true} if abstained, {@code false} otherwise
    * @since 1.0.0
    */
-  default boolean abstains(final @NotNull FilterQuery query) {
+  @ApiStatus.NonExtendable
+  default boolean abstains(final @NotNull FilterQueryLike query) {
     return this.query(query) == FilterResponse.ABSTAIN;
   }
 
@@ -205,7 +220,8 @@ public interface Filter {
    * @return {@code true} if denied, {@code false} otherwise
    * @since 1.0.0
    */
-  default boolean denies(final @NotNull FilterQuery query) {
+  @ApiStatus.NonExtendable
+  default boolean denies(final @NotNull FilterQueryLike query) {
     return this.query(query) == FilterResponse.DENY;
   }
 }
