@@ -38,34 +38,19 @@ public enum FilterResponse {
    *
    * @since 1.0.0
    */
-  ALLOW {
-    @Override
-    @NotNull FilterResponse inverse() {
-      return DENY;
-    }
-  },
+  ALLOW,
   /**
    * The filter abstains from responding to the query.
    *
    * @since 1.0.0
    */
-  ABSTAIN {
-    @Override
-    @NotNull FilterResponse inverse() {
-      return this; // no inverse
-    }
-  },
+  ABSTAIN,
   /**
    * The filter denies the query.
    *
    * @since 1.0.0
    */
-  DENY {
-    @Override
-    @NotNull FilterResponse inverse() {
-      return ALLOW;
-    }
-  };
+  DENY;
 
   /**
    * Converts a {@code boolean} into a response.
@@ -93,6 +78,4 @@ public enum FilterResponse {
       case DENY -> false;
     };
   }
-
-  abstract @NotNull FilterResponse inverse();
 }

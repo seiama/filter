@@ -28,6 +28,10 @@ import org.jetbrains.annotations.NotNull;
 record NotFilterImpl(@NotNull Filter filter) implements NotFilter {
   @Override
   public @NotNull FilterResponse query(final @NotNull FilterQuery query) {
-    return this.filter.query(query).inverse();
+    return switch (this.filter.query(query)) {
+      case ALLOW -> FilterResponse.DENY;
+      case DENY -> FilterResponse.ALLOW;
+      case ABSTAIN -> FilterResponse.ABSTAIN;
+    };
   }
 }

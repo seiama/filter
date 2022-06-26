@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FilterResponseTest {
@@ -43,12 +42,5 @@ class FilterResponseTest {
     assertTrue(FilterResponse.ABSTAIN.toBoolean(() -> true));
     assertFalse(FilterResponse.ABSTAIN.toBoolean(() -> false));
     assertFalse(FilterResponse.DENY.toBoolean(() -> true));
-  }
-
-  @Test
-  void testInverse() {
-    assertEquals(FilterResponse.DENY, FilterResponse.ALLOW.inverse());
-    assertSame(FilterResponse.ABSTAIN, FilterResponse.ABSTAIN.inverse());
-    assertEquals(FilterResponse.ALLOW, FilterResponse.DENY.inverse());
   }
 }
