@@ -29,8 +29,12 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A filter.
+ * A filter is something that can respond with either "yes", "no", or "don't care" to a question.
  *
+ * @see AllFilter
+ * @see AnyFilter
+ * @see ConstantFilter
+ * @see NotFilter
  * @since 1.0.0
  */
 @FunctionalInterface

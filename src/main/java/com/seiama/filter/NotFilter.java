@@ -28,7 +28,31 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A filter that returns the inverse response.
+ * A filter that returns the inverse response of the {@link #filter() original filter}, as shown in the below table.
+ *
+ * <table>
+ *   <caption>Inverse response mappings</caption>
+ *   <thead>
+ *     <tr>
+ *       <th>Original Response</th>
+ *       <th>Inverse Response</th>
+ *     </tr>
+ *   </thead>
+ *   <tbody>
+ *     <tr>
+ *       <td>ALLOW</td>
+ *       <td>DENY</td>
+ *     </tr>
+ *     <tr>
+ *       <td>ABSTAIN</td>
+ *       <td>ABSTAIN</td>
+ *     </tr>
+ *     <tr>
+ *       <td>DENY</td>
+ *       <td>ALLOW</td>
+ *     </tr>
+ *   </tbody>
+ * </table>
  *
  * @since 1.0.0
  */
