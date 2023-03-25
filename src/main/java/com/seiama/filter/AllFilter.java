@@ -24,7 +24,7 @@
 package com.seiama.filter;
 
 import java.util.List;
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.NonExtendable;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Unmodifiable;
  *
  * @since 1.0.0
  */
-@ApiStatus.NonExtendable
+@NonExtendable
 public sealed interface AllFilter extends Filter permits AllFilterImpl {
   /**
    * Gets the child filters.

@@ -23,7 +23,7 @@
  */
 package com.seiama.filter;
 
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.NonExtendable;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -32,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 1.0.0
  */
 public interface FilterQuery extends FilterQueryLike {
-  @ApiStatus.NonExtendable
+  @NonExtendable
   @Override
   default @NotNull FilterQuery asFilterQuery() {
     return this;

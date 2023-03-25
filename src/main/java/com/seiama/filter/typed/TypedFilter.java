@@ -26,7 +26,7 @@ package com.seiama.filter.typed;
 import com.seiama.filter.Filter;
 import com.seiama.filter.FilterQuery;
 import com.seiama.filter.FilterResponse;
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.OverrideOnly;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -61,6 +61,6 @@ public interface TypedFilter<Q extends FilterQuery> extends Filter {
    * @return the response
    * @since 1.0.0
    */
-  @ApiStatus.OverrideOnly
+  @OverrideOnly
   @NotNull FilterResponse typedQuery(final @NotNull Q query);
 }

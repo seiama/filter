@@ -23,7 +23,7 @@
  */
 package com.seiama.filter;
 
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.NonExtendable;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -56,7 +56,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @since 1.0.0
  */
-@ApiStatus.NonExtendable
+@NonExtendable
 public sealed interface NotFilter extends Filter permits NotFilterImpl {
   /**
    * Gets the child filter.

@@ -23,7 +23,7 @@
  */
 package com.seiama.filter;
 
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.NonExtendable;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -36,7 +36,7 @@ import org.jetbrains.annotations.NotNull;
  * @see Filter#abstain()
  * @since 1.0.0
  */
-@ApiStatus.NonExtendable
+@NonExtendable
 public sealed interface ConstantFilter extends Filter permits ConstantFilterImpl {
   /**
    * Gets the response.
