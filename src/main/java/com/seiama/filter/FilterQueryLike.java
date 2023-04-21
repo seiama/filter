@@ -23,7 +23,7 @@
  */
 package com.seiama.filter;
 
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * Something that can be represented as a {@link FilterQuery}.
@@ -31,6 +31,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 1.0.0
  */
 @FunctionalInterface
+@NullMarked
 public interface FilterQueryLike {
   /**
    * Provides a filter query.
@@ -38,5 +39,5 @@ public interface FilterQueryLike {
    * @return the filter query
    * @since 1.0.0
    */
-  @NotNull FilterQuery asFilterQuery();
+  FilterQuery asFilterQuery();
 }

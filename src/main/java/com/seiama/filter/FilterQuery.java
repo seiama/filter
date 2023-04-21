@@ -24,17 +24,18 @@
 package com.seiama.filter;
 
 import org.jetbrains.annotations.ApiStatus.NonExtendable;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * A filter query.
  *
  * @since 1.0.0
  */
+@NullMarked
 public interface FilterQuery extends FilterQueryLike {
   @NonExtendable
   @Override
-  default @NotNull FilterQuery asFilterQuery() {
+  default FilterQuery asFilterQuery() {
     return this;
   }
 }

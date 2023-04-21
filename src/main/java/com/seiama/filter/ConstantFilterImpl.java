@@ -23,15 +23,16 @@
  */
 package com.seiama.filter;
 
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
-record ConstantFilterImpl(@NotNull FilterResponse response) implements ConstantFilter {
+@NullMarked
+record ConstantFilterImpl(FilterResponse response) implements ConstantFilter {
   static final ConstantFilterImpl ALLOW = new ConstantFilterImpl(FilterResponse.ALLOW);
   static final ConstantFilterImpl ABSTAIN = new ConstantFilterImpl(FilterResponse.ABSTAIN);
   static final ConstantFilterImpl DENY = new ConstantFilterImpl(FilterResponse.DENY);
 
   @Override
-  public @NotNull FilterResponse query(final @NotNull FilterQuery query) {
+  public FilterResponse query(final FilterQuery query) {
     return this.response;
   }
 }

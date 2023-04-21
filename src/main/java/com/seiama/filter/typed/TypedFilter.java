@@ -27,7 +27,7 @@ import com.seiama.filter.Filter;
 import com.seiama.filter.FilterQuery;
 import com.seiama.filter.FilterResponse;
 import org.jetbrains.annotations.ApiStatus.OverrideOnly;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * A filter which accepts queries of type {@code Q}.
@@ -35,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
  * @param <Q> the query type
  * @since 1.0.0
  */
+@NullMarked
 public interface TypedFilter<Q extends FilterQuery> extends Filter {
   /**
    * Tests if this filter accepts the query.
@@ -43,10 +44,10 @@ public interface TypedFilter<Q extends FilterQuery> extends Filter {
    * @return {@code true} if this filter accepts the query, {@code false} otherwise
    * @since 1.0.0
    */
-  boolean queryableWith(final @NotNull FilterQuery query);
+  boolean queryableWith(final FilterQuery query);
 
   @Override
-  default @NotNull FilterResponse query(final @NotNull FilterQuery query) {
+  default FilterResponse query(final FilterQuery query) {
     if (this.queryableWith(query)) {
       @SuppressWarnings("unchecked")
       final Q queryAsQ = (Q) query;
@@ -63,5 +64,5 @@ public interface TypedFilter<Q extends FilterQuery> extends Filter {
    * @since 1.0.0
    */
   @OverrideOnly
-  @NotNull FilterResponse typedQuery(final @NotNull Q query);
+  FilterResponse typedQuery(final Q query);
 }

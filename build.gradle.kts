@@ -63,6 +63,7 @@ dependencies {
   checkstyle("ca.stellardrift:stylecheck:0.2.1")
   errorprone("com.google.errorprone:error_prone_core:2.22.0")
   compileOnlyApi("org.jetbrains:annotations:24.0.1")
+  compileOnlyApi("org.jspecify:jspecify:0.3.0")
   testImplementation("com.google.guava:guava-testlib:32.1.1-jre")
   testImplementation(platform("org.junit:junit-bom:5.10.0"))
   testImplementation("org.junit.jupiter:junit-jupiter-api")

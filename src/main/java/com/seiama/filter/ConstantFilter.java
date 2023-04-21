@@ -25,7 +25,7 @@ package com.seiama.filter;
 
 import org.jetbrains.annotations.ApiStatus.NonExtendable;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * A filter that always returns the same response.
@@ -37,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 1.0.0
  */
 @NonExtendable
+@NullMarked
 public sealed interface ConstantFilter extends Filter permits ConstantFilterImpl {
   /**
    * Gets the response.
@@ -45,5 +46,5 @@ public sealed interface ConstantFilter extends Filter permits ConstantFilterImpl
    * @since 1.0.0
    */
   @Contract(pure = true)
-  @NotNull FilterResponse response();
+  FilterResponse response();
 }

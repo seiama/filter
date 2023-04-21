@@ -25,7 +25,6 @@ package com.seiama.filter.typed;
 
 import com.seiama.filter.FilterQuery;
 import com.seiama.filter.FilterResponse;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,12 +59,12 @@ class TypedFilterTest {
 
   private static class AllowTypesOfA implements TypedFilter<A> {
     @Override
-    public boolean queryableWith(final @NotNull FilterQuery query) {
+    public boolean queryableWith(final FilterQuery query) {
       return query instanceof A;
     }
 
     @Override
-    public @NotNull FilterResponse typedQuery(final @NotNull A query) {
+    public FilterResponse typedQuery(final A query) {
       return FilterResponse.ALLOW;
     }
   }

@@ -26,8 +26,8 @@ package com.seiama.filter;
 import java.util.List;
 import org.jetbrains.annotations.ApiStatus.NonExtendable;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * A filter that responds with {@link FilterResponse#ALLOW} if all of its children also respond with {@link FilterResponse#ALLOW}.
@@ -37,6 +37,7 @@ import org.jetbrains.annotations.Unmodifiable;
  * @since 1.0.0
  */
 @NonExtendable
+@NullMarked
 public sealed interface AllFilter extends Filter permits AllFilterImpl {
   /**
    * Gets the child filters.
@@ -48,5 +49,5 @@ public sealed interface AllFilter extends Filter permits AllFilterImpl {
    */
   @Contract(pure = true)
   @Unmodifiable
-  @NotNull List<? extends Filter> filters();
+  List<? extends Filter> filters();
 }

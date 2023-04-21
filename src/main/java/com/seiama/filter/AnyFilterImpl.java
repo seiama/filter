@@ -24,16 +24,17 @@
 package com.seiama.filter;
 
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
-record AnyFilterImpl(@NotNull List<? extends Filter> filters) implements AnyFilter {
+@NullMarked
+record AnyFilterImpl(List<? extends Filter> filters) implements AnyFilter {
   AnyFilterImpl {
     filters = List.copyOf(filters);
   }
 
   @Override
   @SuppressWarnings("ForLoopReplaceableByForEach")
-  public @NotNull FilterResponse query(final @NotNull FilterQuery query) {
+  public FilterResponse query(final FilterQuery query) {
     FilterResponse result = FilterResponse.ABSTAIN;
     final List<? extends Filter> filters = this.filters;
     for (int i = 0, size = filters.size(); i < size; i++) {

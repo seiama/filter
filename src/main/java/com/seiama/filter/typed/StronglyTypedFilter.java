@@ -26,7 +26,7 @@ package com.seiama.filter.typed;
 import com.seiama.filter.FilterQuery;
 import com.seiama.filter.FilterResponse;
 import org.jetbrains.annotations.ApiStatus.OverrideOnly;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * A filter that <b>always</b> responds to queries of type {@code Q}.
@@ -34,9 +34,10 @@ import org.jetbrains.annotations.NotNull;
  * @param <Q> the query type
  * @since 1.0.0
  */
+@NullMarked
 public interface StronglyTypedFilter<Q extends FilterQuery> extends TypedFilter<Q> {
   @Override
-  default @NotNull FilterResponse typedQuery(final @NotNull Q query) {
+  default FilterResponse typedQuery(final Q query) {
     return FilterResponse.fromBoolean(this.queryResponse(query));
   }
 
@@ -48,5 +49,5 @@ public interface StronglyTypedFilter<Q extends FilterQuery> extends TypedFilter<
    * @since 1.0.0
    */
   @OverrideOnly
-  boolean queryResponse(final @NotNull Q query);
+  boolean queryResponse(final Q query);
 }

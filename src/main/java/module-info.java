@@ -23,6 +23,7 @@
  */
 module com.seiama.filter {
   requires static transitive org.jetbrains.annotations;
+  requires static transitive org.jspecify;
 
   exports com.seiama.filter;
   exports com.seiama.filter.typed;

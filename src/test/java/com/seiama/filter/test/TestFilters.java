@@ -25,33 +25,32 @@ package com.seiama.filter.test;
 
 import com.seiama.filter.FilterQuery;
 import com.seiama.filter.typed.StronglyTypedFilter;
-import org.jetbrains.annotations.NotNull;
 
 public class TestFilters {
   interface Abstract extends StronglyTypedFilter<TestFilterQuery> {
     @Override
-    default boolean queryableWith(final @NotNull FilterQuery query) {
+    default boolean queryableWith(final FilterQuery query) {
       return query instanceof TestFilterQuery;
     }
   }
 
   public record Equals(int value) implements Abstract {
     @Override
-    public boolean queryResponse(final @NotNull TestFilterQuery query) {
+    public boolean queryResponse(final TestFilterQuery query) {
       return query.value() == this.value();
     }
   }
 
   public record Below(int value) implements Abstract {
     @Override
-    public boolean queryResponse(final @NotNull TestFilterQuery query) {
+    public boolean queryResponse(final TestFilterQuery query) {
       return query.value() < this.value();
     }
   }
 
   public record Above(int value) implements Abstract {
     @Override
-    public boolean queryResponse(final @NotNull TestFilterQuery query) {
+    public boolean queryResponse(final TestFilterQuery query) {
       return query.value() > this.value();
     }
   }

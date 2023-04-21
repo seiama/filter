@@ -23,11 +23,12 @@
  */
 package com.seiama.filter;
 
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
-record NotFilterImpl(@NotNull Filter filter) implements NotFilter {
+@NullMarked
+record NotFilterImpl(Filter filter) implements NotFilter {
   @Override
-  public @NotNull FilterResponse query(final @NotNull FilterQuery query) {
+  public FilterResponse query(final FilterQuery query) {
     return switch (this.filter.query(query)) {
       case ALLOW -> FilterResponse.DENY;
       case DENY -> FilterResponse.ALLOW;

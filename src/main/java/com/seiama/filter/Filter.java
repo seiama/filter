@@ -27,7 +27,7 @@ import java.util.List;
 import org.jetbrains.annotations.ApiStatus.NonExtendable;
 import org.jetbrains.annotations.CheckReturnValue;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * A filter is something that can respond with either "yes", "no", or "don't care" to a question.
@@ -40,6 +40,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 1.0.0
  */
 @FunctionalInterface
+@NullMarked
 public interface Filter {
   /**
    * Creates filter that responds with {@link FilterResponse#ALLOW} if all of its children also respond with {@link FilterResponse#ALLOW}.
@@ -49,7 +50,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull AllFilter all(final @NotNull Filter @NotNull ... filters) {
+  static AllFilter all(final Filter... filters) {
     return all(List.of(filters));
   }
 
@@ -61,7 +62,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull AllFilter all(final @NotNull List<? extends @NotNull Filter> filters) {
+  static AllFilter all(final List<? extends Filter> filters) {
     return new AllFilterImpl(filters);
   }
 
@@ -73,7 +74,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull AnyFilter any(final @NotNull Filter @NotNull ... filters) {
+  static AnyFilter any(final Filter... filters) {
     return any(List.of(filters));
   }
 
@@ -85,7 +86,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull AnyFilter any(final @NotNull List<? extends @NotNull Filter> filters) {
+  static AnyFilter any(final List<? extends Filter> filters) {
     return new AnyFilterImpl(filters);
   }
 
@@ -97,7 +98,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull NotFilter not(final @NotNull Filter filter) {
+  static NotFilter not(final Filter filter) {
     return new NotFilterImpl(filter);
   }
 
@@ -109,7 +110,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull OneFilter one(final @NotNull Filter @NotNull ... filters) {
+  static OneFilter one(final Filter... filters) {
     return one(List.of(filters));
   }
 
@@ -121,7 +122,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull OneFilter one(final @NotNull List<? extends @NotNull Filter> filters) {
+  static OneFilter one(final List<? extends Filter> filters) {
     return new OneFilterImpl(filters);
   }
 
@@ -133,7 +134,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull ConstantFilter always(final @NotNull FilterResponse response) {
+  static ConstantFilter always(final FilterResponse response) {
     return switch (response) {
       case ALLOW -> allow();
       case DENY -> deny();
@@ -148,7 +149,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull ConstantFilter allow() {
+  static ConstantFilter allow() {
     return ConstantFilterImpl.ALLOW;
   }
 
@@ -159,7 +160,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull ConstantFilter abstain() {
+  static ConstantFilter abstain() {
     return ConstantFilterImpl.ABSTAIN;
   }
 
@@ -170,7 +171,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  static @NotNull ConstantFilter deny() {
+  static ConstantFilter deny() {
     return ConstantFilterImpl.DENY;
   }
 
@@ -182,7 +183,7 @@ public interface Filter {
    * @since 1.0.0
    */
   @CheckReturnValue
-  @NotNull FilterResponse query(final @NotNull FilterQuery query);
+  FilterResponse query(final FilterQuery query);
 
   /**
    * Query this filter for a response.
@@ -193,7 +194,7 @@ public interface Filter {
    */
   @CheckReturnValue
   @NonExtendable
-  default @NotNull FilterResponse query(final @NotNull FilterQueryLike query) {
+  default FilterResponse query(final FilterQueryLike query) {
     return this.query(query.asFilterQuery());
   }
 
@@ -206,7 +207,7 @@ public interface Filter {
    */
   @CheckReturnValue
   @NonExtendable
-  default boolean allows(final @NotNull FilterQueryLike query) {
+  default boolean allows(final FilterQueryLike query) {
     return this.query(query) == FilterResponse.ALLOW;
   }
 
@@ -219,7 +220,7 @@ public interface Filter {
    */
   @CheckReturnValue
   @NonExtendable
-  default boolean abstains(final @NotNull FilterQueryLike query) {
+  default boolean abstains(final FilterQueryLike query) {
     return this.query(query) == FilterResponse.ABSTAIN;
   }
 
@@ -232,7 +233,7 @@ public interface Filter {
    */
   @CheckReturnValue
   @NonExtendable
-  default boolean denies(final @NotNull FilterQueryLike query) {
+  default boolean denies(final FilterQueryLike query) {
     return this.query(query) == FilterResponse.DENY;
   }
 }

@@ -25,13 +25,14 @@ package com.seiama.filter;
 
 import java.util.function.BooleanSupplier;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * A response from querying a {@link Filter}.
  *
  * @since 1.0.0
  */
+@NullMarked
 public enum FilterResponse {
   /**
    * The filter allows the query.
@@ -60,7 +61,7 @@ public enum FilterResponse {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  public static @NotNull FilterResponse fromBoolean(final boolean value) {
+  public static FilterResponse fromBoolean(final boolean value) {
     return value ? ALLOW : DENY;
   }
 
@@ -71,7 +72,7 @@ public enum FilterResponse {
    * @return a {@code boolean}
    * @since 1.0.0
    */
-  public boolean toBoolean(final @NotNull BooleanSupplier abstain) {
+  public boolean toBoolean(final BooleanSupplier abstain) {
     return switch (this) {
       case ALLOW -> true;
       case ABSTAIN -> abstain.getAsBoolean();

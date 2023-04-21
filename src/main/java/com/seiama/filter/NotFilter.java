@@ -25,7 +25,7 @@ package com.seiama.filter;
 
 import org.jetbrains.annotations.ApiStatus.NonExtendable;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * A filter that returns the inverse response of the {@link #filter() original filter}, as shown in the below table.
@@ -58,6 +58,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 1.0.0
  */
 @NonExtendable
+@NullMarked
 public sealed interface NotFilter extends Filter permits NotFilterImpl {
   /**
    * Gets the child filter.
@@ -68,5 +69,5 @@ public sealed interface NotFilter extends Filter permits NotFilterImpl {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  @NotNull Filter filter();
+  Filter filter();
 }
