@@ -45,5 +45,6 @@ public sealed interface OneFilter extends Filter permits OneFilterImpl {
    * @since 1.0.0
    */
   @Contract(pure = true)
-  @NotNull @Unmodifiable List<? extends Filter> filters();
+  @Unmodifiable
+  @NotNull List<? extends Filter> filters();
 }
