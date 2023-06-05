@@ -1,6 +1,6 @@
 plugins {
-  val indraVersion = "3.0.1"
-  id("com.diffplug.spotless") version "6.18.0"
+  val indraVersion = "3.1.1"
+  id("com.diffplug.spotless") version "6.19.0"
   id("net.kyori.indra") version indraVersion
   id("net.kyori.indra.checkstyle") version indraVersion
   id("net.kyori.indra.publishing") version indraVersion
@@ -60,10 +60,10 @@ repositories {
 
 dependencies {
   annotationProcessor("ca.stellardrift:contract-validator:1.0.1")
-  checkstyle("ca.stellardrift:stylecheck:0.2.0")
-  errorprone("com.google.errorprone:error_prone_core:2.18.0")
+  checkstyle("ca.stellardrift:stylecheck:0.2.1")
+  errorprone("com.google.errorprone:error_prone_core:2.19.1")
   compileOnlyApi("org.jetbrains:annotations:24.0.1")
-  testImplementation("com.google.guava:guava-testlib:31.1-jre")
+  testImplementation("com.google.guava:guava-testlib:32.0.0-jre")
   testImplementation(platform("org.junit:junit-bom:5.9.3"))
   testImplementation("org.junit.jupiter:junit-jupiter-api")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
