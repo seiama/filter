@@ -32,6 +32,8 @@ import org.jetbrains.annotations.Unmodifiable;
 /**
  * A filter that responds with {@link FilterResponse#ALLOW} if any of its children respond with {@link FilterResponse#ALLOW}.
  *
+ * @see Filter#any(Filter...)
+ * @see Filter#any(List)
  * @since 1.0.0
  */
 @NonExtendable

@@ -54,6 +54,7 @@ import org.jetbrains.annotations.NotNull;
  *   </tbody>
  * </table>
  *
+ * @see Filter#not(Filter)
  * @since 1.0.0
  */
 @NonExtendable

@@ -36,6 +36,7 @@ import org.jetbrains.annotations.NotNull;
  * @see AnyFilter
  * @see ConstantFilter
  * @see NotFilter
+ * @see OneFilter
  * @since 1.0.0
  */
 @FunctionalInterface
