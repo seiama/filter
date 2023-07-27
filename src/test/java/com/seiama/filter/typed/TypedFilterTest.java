@@ -29,26 +29,44 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TypedFilterTest {
   @Test
-  void testQueryOfNotQueryableType() {
-    interface A extends FilterQuery {
+  void testQueryableWith() {
+    final TypedFilter<A> filter = new AllowTypesOfA();
+
+    class RandomA implements A {
     }
 
-    final TypedFilter<A> filter = new TypedFilter<>() {
-      @Override
-      public boolean queryable(final @NotNull FilterQuery query) {
-        return query instanceof A;
-      }
+    assertTrue(filter.queryableWith(new A() {
+    }));
+    assertTrue(filter.queryableWith(new RandomA()));
+    assertFalse(filter.queryableWith(new FilterQuery() {
+    }));
+  }
 
-      @Override
-      public @NotNull FilterResponse typedQuery(final @NotNull A query) {
-        return FilterResponse.ALLOW;
-      }
-    };
+  @Test
+  void testQueryOfNotQueryableType() {
+    final TypedFilter<A> filter = new AllowTypesOfA();
 
     assertEquals(FilterResponse.ABSTAIN, filter.query(new FilterQuery() {
     }));
+  }
+
+  private interface A extends FilterQuery {
+  }
+
+  private static class AllowTypesOfA implements TypedFilter<A> {
+    @Override
+    public boolean queryableWith(final @NotNull FilterQuery query) {
+      return query instanceof A;
+    }
+
+    @Override
+    public @NotNull FilterResponse typedQuery(final @NotNull A query) {
+      return FilterResponse.ALLOW;
+    }
   }
 }

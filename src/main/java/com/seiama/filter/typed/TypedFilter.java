@@ -43,11 +43,11 @@ public interface TypedFilter<Q extends FilterQuery> extends Filter {
    * @return {@code true} if this filter accepts the query, {@code false} otherwise
    * @since 1.0.0
    */
-  boolean queryable(final @NotNull FilterQuery query);
+  boolean queryableWith(final @NotNull FilterQuery query);
 
   @Override
   default @NotNull FilterResponse query(final @NotNull FilterQuery query) {
-    if (this.queryable(query)) {
+    if (this.queryableWith(query)) {
       @SuppressWarnings("unchecked")
       final Q queryAsQ = (Q) query;
       return this.typedQuery(queryAsQ);

@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 public class TestFilters {
   interface Abstract extends StronglyTypedFilter<TestFilterQuery> {
     @Override
-    default boolean queryable(final @NotNull FilterQuery query) {
+    default boolean queryableWith(final @NotNull FilterQuery query) {
       return query instanceof TestFilterQuery;
     }
   }
