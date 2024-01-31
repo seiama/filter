@@ -1,7 +1,7 @@
 /*
  * This file is part of filter, licensed under the MIT License.
  *
- * Copyright (c) 2021-2023 Seiama
+ * Copyright (c) 2021-2024 Seiama
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ import com.seiama.filter.test.TestFilters;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AnyFilterTest {
@@ -38,7 +38,7 @@ class AnyFilterTest {
     final Filter f0 = new TestFilters.Equals(0);
     final Filter f1 = new TestFilters.Equals(1);
     final AnyFilter filter = Filter.any(f0, f1);
-    assertEquals(List.of(f0, f1), filter.filters());
+    assertIterableEquals(List.of(f0, f1), filter.filters());
   }
 
   @Test
